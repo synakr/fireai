@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: Manrope, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply m-0 min-w-[320px] bg-[#f5f7fa] font-sans text-[#182230];
+    line-height: normal;
+  }
+}
