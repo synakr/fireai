@@ -1,0 +1,26 @@
+job_id,time_received,submission_method,pages,copies,print_type,configuration_required,processing_start,processing_end,queue_wait_minutes,vendor_interrupted,issue
+J001,16:30,WhatsApp,4,1,B&W,No,16:31,16:32,1,No,None
+J002,16:31,Walk-in,12,2,Colour,Yes,16:34,16:36,3,Yes,Page selection
+J003,16:32,WhatsApp,6,1,B&W,Yes,16:33,16:35,1,No,Customer clarification
+J004,16:33,Walk-in,3,3,B&W,No,16:35,16:36,2,No,None
+J005,16:34,WhatsApp,20,1,Colour,Yes,16:39,16:41,5,Yes,Colour settings
+J006,16:35,WhatsApp,5,2,B&W,No,16:37,16:38,2,No,None
+J007,16:36,Walk-in,8,1,B&W,Yes,16:40,16:41,4,Yes,Selected pages
+J008,16:36,WhatsApp,15,1,Colour,Yes,16:42,16:44,6,No,Print clarification
+J009,16:37,Walk-in,2,5,B&W,No,16:40,16:41,3,No,None
+J010,16:39,WhatsApp,10,2,B&W,Yes,16:43,16:45,4,Yes,Copy count
+J011,16:39,WhatsApp,7,1,B&W,No,16:42,16:43,3,No,None
+J012,16:40,Walk-in,25,1,Colour,Yes,16:46,16:49,6,Yes,Paper settings
+J013,16:41,WhatsApp,4,2,B&W,No,16:44,16:45,3,No,None
+J014,16:42,Walk-in,9,1,B&W,Yes,16:46,16:47,4,No,Page selection
+J015,16:43,WhatsApp,18,1,Colour,Yes,16:49,16:52,6,Yes,Colour settings
+J016,16:44,WhatsApp,3,3,B&W,No,16:47,16:48,3,No,None
+J017,16:45,Walk-in,11,2,B&W,Yes,16:50,16:52,5,Yes,Copy count
+J018,16:45,WhatsApp,6,1,B&W,No,16:48,16:49,3,No,None
+J019,16:46,Walk-in,14,1,Colour,Yes,16:53,16:55,7,Yes,Print clarification
+J020,16:47,WhatsApp,8,2,B&W,Yes,16:51,16:52,4,No,Page selection
+J021,16:48,Walk-in,5,1,B&W,No,16:51,16:52,3,No,None
+J022,16:49,WhatsApp,30,1,Colour,Yes,16:56,16:59,7,Yes,Large document
+J023,16:50,WhatsApp,4,2,B&W,No,16:54,16:55,4,No,None
+J024,16:51,Walk-in,16,1,B&W,Yes,16:57,16:59,6,Yes,Selected pages
+J025,16:51,WhatsApp,9,1,Colour,Yes,16:58,17:00,7,No,Colour settings
