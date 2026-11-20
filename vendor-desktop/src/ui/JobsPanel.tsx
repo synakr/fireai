@@ -6,8 +6,6 @@ type JobsPanelProps = {
   done: number;
   onClearCompleted: () => void;
   onPreview: (job: Job) => void;
-  onPrint: (job: Job) => void;
-  onReject: (job: Job) => void;
 };
 
 const statusLabel: Record<string, string> = {
@@ -15,7 +13,7 @@ const statusLabel: Record<string, string> = {
   pending: "Uploading",
   queued: "Queued",
   printing: "Printing",
-  printed: "Printed",
+  printed: "Submitted",
   rejected: "Rejected",
   failed: "Failed",
 };
@@ -41,8 +39,6 @@ export function JobsPanel({
   done,
   onClearCompleted,
   onPreview,
-  onPrint,
-  onReject,
 }: JobsPanelProps) {
   return (
     <section className="mt-[18px] rounded-[19px] border border-[#e7ebf1] bg-white px-[25px] pb-2 pt-[22px] shadow-[0_3px_14px_rgba(24,34,48,0.025)]">
@@ -110,11 +106,6 @@ export function JobsPanel({
                     minute: "2-digit",
                   })}
                 </span>
-                {job.printSettings && (
-                  <span className="text-[9px] text-[#71828a]">
-                    {job.printSettings.color === false ? "B&W" : "Colour"} · {String(job.printSettings.paperSize || "A4")} · {String(job.printSettings.orientation || "portrait")} · {String(job.printSettings.duplex || "simplex") === "simplex" ? "single-sided" : "double-sided"} · {String(job.printSettings.copies || 1)} copy/copies
-                  </span>
-                )}
               </div>
 
               <div
@@ -128,30 +119,11 @@ export function JobsPanel({
 
               {job.previewUrl ? (
                 <button
-                  type="button"
                   className="whitespace-nowrap rounded-lg border border-[#d9e6e2] bg-[#f7fbfa] px-2.5 py-2 text-[10px] font-bold text-[#2e7565]"
                   onClick={() => onPreview(job)}>
                   Preview
                 </button>
               ) : null}
-
-              {job.status === "queued" && (
-                <button
-                  type="button"
-                  className="whitespace-nowrap rounded-lg bg-[#07866b] px-2.5 py-2 text-[10px] font-bold text-white"
-                  onClick={() => onPrint(job)}>
-                  Print
-                </button>
-              )}
-
-              {job.status === "queued" && (
-                <button
-                  type="button"
-                  className="whitespace-nowrap rounded-lg border border-[#f0d8d5] px-2.5 py-2 text-[10px] font-bold text-[#b84b43]"
-                  onClick={() => onReject(job)}>
-                  Reject
-                </button>
-              )}
 
               <div
                 className="max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap text-right text-[10px] text-[#8b95a2]"

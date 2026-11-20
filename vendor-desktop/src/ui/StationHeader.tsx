@@ -20,7 +20,7 @@ export function StationHeader({
         </div>
         <div>
           <strong className="block font-[Manrope,sans-serif] text-xl font-bold tracking-[-0.8px]">
-            <span className="text-[#1f2937]">espresso</span>
+            <span className="text-[#1f2937]">qr</span>
             <span className="text-[#087f68]">print</span>
           </strong>
           <small className="text-[9px] font-bold tracking-[1.6px] text-[#7d8999]">

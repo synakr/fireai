@@ -7,7 +7,6 @@ export type Job = {
   createdAt: string;
   message: string;
   previewUrl?: string;
-  printSettings?: Record<string, unknown>;
 };
 
 export type State = {
@@ -15,6 +14,7 @@ export type State = {
   port: number;
   guestUrl: string;
   sessionToken: string;
+  autoApprove: boolean;
   printers: string[];
   selectedPrinter: string;
   jobs: Job[];

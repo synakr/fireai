@@ -5,13 +5,11 @@ contextBridge.exposeInMainWorld("printHost", {
   getState: () => ipcRenderer.invoke("host:get-state"),
   hasCloudJob: (id) => ipcRenderer.invoke("host:has-cloud-job", id),
   clearCompleted: () => ipcRenderer.invoke("host:clear-completed"),
-  printJob: (id) => ipcRenderer.invoke("host:print-job", id),
-  rejectJob: (id) => ipcRenderer.invoke("host:reject-job", id),
   refreshPrinters: () => ipcRenderer.invoke("host:refresh-printers"),
 
   // Cloud print jobs
-  queueCloudJob: (metadata, data) =>
-    ipcRenderer.invoke("host:queue-cloud-job", metadata, data),
+  queueCloudJob: (metadata, data, printNow) =>
+    ipcRenderer.invoke("host:queue-cloud-job", metadata, data, printNow),
 
   // Relay transfers
   relayStart: (metadata) => ipcRenderer.invoke("host:relay-start", metadata),

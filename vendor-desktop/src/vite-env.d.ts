@@ -3,8 +3,9 @@ interface Window {
   printHost: {
     getState: () => Promise<any>;
     hasCloudJob: (id: string) => Promise<boolean>;
-    printJob: (id: string) => Promise<{ id: string; status: string; message: string }>;
-    rejectJob: (id: string) => Promise<{ id: string; status: string; message: string }>;
+    setAutoApprove: (value: boolean) => Promise<any>;
+    approve: (id: string) => Promise<any>;
+    reject: (id: string) => Promise<any>;
     clearCompleted: () => Promise<any>;
     refreshPrinters: () => Promise<any>;
     openQrPreview: (
@@ -20,6 +21,7 @@ interface Window {
         options: Record<string, unknown>;
       },
       data: ArrayBuffer,
+      printNow: boolean,
     ) => Promise<any>;
     relayStart: (metadata: {
       jobId: string;

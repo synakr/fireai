@@ -41,7 +41,7 @@ export function AuthScreen({
           </div>
           <div>
             <strong className="block font-[Manrope,sans-serif] text-[22px] font-bold tracking-[-0.8px]">
-              espresso<span>print</span>
+              qr<span>print</span>
             </strong>
             <small className="text-[9px] font-bold tracking-[1.6px] text-[#7d8999]">
               YOUR PRINT STATION

@@ -5,7 +5,7 @@ export function GuestBrand() {
       <div className="flex items-center gap-2">
         <div>
           <strong className="block font-display text-[15px] font-extrabold tracking-[-0.5px] leading-tight text-[#172033]">
-            espresso<span className="text-[#0a9b7d]">print</span>
+            qr<span className="text-[#0a9b7d]">print</span>
           </strong>
         </div>
       </div>

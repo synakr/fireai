@@ -219,7 +219,6 @@ Add-Type -AssemblyName System.Drawing
 
 $path = $args[0]
 $printer = $args[1]
-$options = $args[2] | ConvertFrom-Json
 $image = [System.Drawing.Image]::FromFile($path)
 
 try {
@@ -231,25 +230,6 @@ try {
     }
 
     $doc.DocumentName = [System.IO.Path]::GetFileName($path)
-    $doc.PrinterSettings.Copies = [short]$options.copies
-    $doc.PrinterSettings.Collate = [bool]$options.collate
-    $doc.DefaultPageSettings.Landscape = [bool]$options.landscape
-    $doc.DefaultPageSettings.Color = [bool]$options.color
-
-    if ($options.duplexMode -eq 'longEdge') {
-        $doc.PrinterSettings.Duplex = [System.Drawing.Printing.Duplex]::Vertical
-    } elseif ($options.duplexMode -eq 'shortEdge') {
-        $doc.PrinterSettings.Duplex = [System.Drawing.Printing.Duplex]::Horizontal
-    } else {
-        $doc.PrinterSettings.Duplex = [System.Drawing.Printing.Duplex]::Simplex
-    }
-
-    if ($options.pageSize -and $options.pageSize.name) {
-        $paper = $doc.PrinterSettings.PaperSizes |
-            Where-Object { $_.PaperName -match [regex]::Escape($options.pageSize.name) } |
-            Select-Object -First 1
-        if ($paper) { $doc.DefaultPageSettings.PaperSize = $paper }
-    }
 
     $doc.add_PrintPage({
         param($sender, $e)
@@ -277,7 +257,7 @@ try {
 }
 `;
 
-  await runPowerShell(script, [filePath, printerName, JSON.stringify(normalizePrintOptions(options))]);
+  await runPowerShell(script, [filePath, printerName]);
 }
 
 async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
@@ -623,7 +603,7 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
       printers,
       selectedPrinter,
       jobs: jobs.map(
-        ({ id, originalName, mimeType, size, status, createdAt, message, printOptions }) => ({
+        ({ id, originalName, mimeType, size, status, createdAt, message }) => ({
           id,
           originalName,
           mimeType,
@@ -631,7 +611,6 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
           status,
           createdAt,
           message,
-          printSettings: printOptions || {},
         }),
       ),
     };
@@ -663,7 +642,7 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
         job.relayStream.destroy();
       }
 
-      if (job.status === "printed" || job.status === "rejected") {
+      if (job.relayDone || !job.relayStream) {
         try {
           fs.unlinkSync(job.path);
         } catch {}
@@ -673,38 +652,6 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
       onRelayResult?.(job);
       notify();
     }
-  }
-
-  async function printJob(id) {
-    const job = jobs.find((item) => item.id === id);
-    if (!job) throw new Error("Print job was not found.");
-    if (job.status === "printing") throw new Error("This job is already printing.");
-    if (job.status === "printed" || job.status === "rejected") {
-      throw new Error("This job has already been completed.");
-    }
-    if (job.relayStream || !job.relayDone) {
-      throw new Error("The file upload is not complete yet.");
-    }
-    await processJob(job);
-    return { id: job.id, status: job.status, message: job.message };
-  }
-
-  async function rejectJob(id) {
-    const job = jobs.find((item) => item.id === id);
-    if (!job) throw new Error("Print job was not found.");
-    if (job.status === "printing" || job.status === "printed") {
-      throw new Error("A job that is printing or printed cannot be rejected.");
-    }
-    if (job.relayStream) job.relayStream.destroy();
-    job.status = "rejected";
-    job.message = "Rejected by the vendor.";
-    try {
-      fs.unlinkSync(job.path);
-    } catch {}
-    persistJobs(jobs);
-    onRelayResult?.(job);
-    notify();
-    return { id: job.id, status: job.status, message: job.message };
   }
 
   app.use(express.json());
@@ -828,7 +775,7 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
 
     clearCompleted: () => {
       for (let i = jobs.length - 1; i >= 0; i--) {
-        if (["printed", "rejected"].includes(jobs[i].status)) {
+        if (jobs[i].status === "printed") {
           try {
             fs.unlinkSync(jobs[i].path);
           } catch {}
@@ -843,8 +790,6 @@ async function startHost({ getLanIPv4, onChange, onRelayResult, printPdf }) {
     },
 
     queueCloudJob,
-    printJob,
-    rejectJob,
 
     refreshPrinters: async () => {
       printers = await getPrinters();

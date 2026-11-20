@@ -23,7 +23,6 @@ export type VendorQueueJob = {
   createdAt: string;
   message: string;
   previewUrl?: string;
-  printSettings?: Record<string, unknown>;
 };
 
 type JobResult = {
@@ -109,7 +108,6 @@ export function connectVendorJobs(
               ? "Preparing file…"
               : ""),
         previewUrl: previewUrls.get(job.id),
-        printSettings: job.print_settings || {},
       })),
     );
   }
@@ -139,7 +137,7 @@ export function connectVendorJobs(
       return;
     }
 
-    if (result.success || result.status === "rejected") {
+    if (result.success) {
       const { data: job } = await supabase!
         .from("print_jobs")
         .select("storage_path")
@@ -158,7 +156,7 @@ export function connectVendorJobs(
 
   const unsubscribeRelayResult = window.printHost.onRelayResult(
     (result: JobResult) => {
-      if (latestJobs.some((job) => job.id === result.jobId)) {
+      if (processing.has(result.jobId)) {
         void finishJob(result);
       }
     },
@@ -236,6 +234,7 @@ export function connectVendorJobs(
           options: job.print_settings,
         },
         await file.arrayBuffer(),
+        job.status === "queued",
       );
     } catch (error) {
       const message =
