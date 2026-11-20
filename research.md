@@ -32,11 +32,18 @@ QwikPrint offers self-service printing kiosks that allow customers to scan a QR 
 
 ### Solution 2: Manual WhatsApp Intervention
 
-- Current whatsapp method works, but its lot of time sonsuming as well as repeated works are there, leading to confusion
-- There is no proper memory management in whatsapp; Vendor has to do all the memory management by himself; he have to cleanup spaces himself after downloading the files and doing the printing jobs;
-- Repeated asking of printing configuaration often lead to confusion and frustration; this often leads to mistakes; like page number may very; color cofiguration might vary.
+The existing WhatsApp-based approach works, but it involves considerable manual effort and repetitive tasks, resulting in delays and operational confusion.
 
-**Our approach:** QR Print Bridge aims to bring similar self-service automation for existing print shops without intervention from the shopkeeper. The user scans the qr, inputs the config and gets the printing job done directly; he see his queue and waiting time, hence time management can be done well
+- **Time-consuming workflow:** Every print request requires the vendor to manually download files, identify customer requirements, configure print settings, and process the job.
+- **Lack of file management:** WhatsApp does not provide a dedicated print-job management system. The vendor must manually manage downloaded files, organize them, and clean up storage after completing print jobs.
+- **Repeated configuration requests:** Customers often need to communicate their printing preferences repeatedly. This can lead to misunderstandings, frustration, and printing errors, such as incorrect page ranges or inconsistent colour and layout settings.
+- **Limited workflow visibility:** Customers have little visibility into their job status or waiting time, often requiring them to follow up with the vendor manually.
+
+**Our Approach:**
+
+QR Print Bridge aims to introduce self-service automation into existing print shops without requiring manual intervention from the shopkeeper for every request.
+
+Customers simply scan a QR code, upload their documents, configure their printing preferences, and submit their jobs directly. They can also track their position in the print queue and estimated waiting time, improving transparency and helping them manage their time more effectively.
 
 ## 3. Sources Read
 
@@ -48,10 +55,14 @@ https://thebetterindia.com/startup/self-service-printing-kiosks-qwikprint-startu
 - Explains its QR-based document upload, print configuration, digital payment, and OTP-based collection workflow.
 - Helped establish the printing ATM model as an existing approach and identify the possibility of bringing similar automation to conventional printing shops without dedicated kiosk hardware.
 
-### Source 2: WhatsApp Management issues
+### Source 2: WhatsApp Management Issues
 
-https://teamwire.eu/en/blog/the-disadvantages-of-using-whatsapp-for-business-purposes/
+[The Disadvantages of Using WhatsApp for Business Purposes – Teamwire](https://teamwire.eu/en/blog/the-disadvantages-of-using-whatsapp-for-business-purposes/)
 
-- Describes how the new user needs to manually save the contact first in order to send files because of whatsapp business policies.
-- Onboarding might be messy for the vendor
-- Accounts are linked to personal phone numbers; might have both advantage as well as disadvantage
+The article highlights several limitations of using WhatsApp for business communication:
+
+- **Contact-saving requirements:** Depending on the communication method and business account setup, customers may need to save or otherwise establish the business contact before initiating communication and sharing files.
+- **Onboarding friction:** Requiring customers to interact through WhatsApp and follow additional steps can make the initial experience less seamless.
+- **Personal number dependency:** WhatsApp accounts are typically associated with phone numbers. This can be convenient for direct communication but may also create privacy and separation concerns when vendors use personal numbers for business operations.
+
+These limitations further highlight the need for a dedicated, self-service print submission and job management system.
