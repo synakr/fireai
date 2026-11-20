@@ -1,15 +1,27 @@
 {
-  "name": "qr-print-bridge-fireai",
+  "name": "qr-print-bridge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "private": true,
+  "description": "QR-based customer document submission and vendor-controlled print-job management, with fieldwork workflow analysis.",
+  "workspaces": [
+    "guest",
+    "vendor-desktop"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:guest": "npm run dev --workspace @qr-print/guest",
+    "dev:desktop": "npm run dev --workspace @qr-print/vendor-desktop",
+    "build:guest": "npm run build --workspace @qr-print/guest",
+    "build:desktop": "npm run build --workspace @qr-print/vendor-desktop",
+    "build": "npm run build:guest && npm run build:desktop",
+    "typecheck:guest": "npm run typecheck --workspace @qr-print/guest",
+    "typecheck:desktop": "npm run typecheck --workspace @qr-print/vendor-desktop",
+    "typecheck": "npm run typecheck:guest && npm run typecheck:desktop",
+    "analysis": "python analysis/analyze_jobs.py",
+    "test": "python -m unittest discover -s tests -v",
+    "package:windows": "npm run package --workspace @qr-print/vendor-desktop"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  }
 }

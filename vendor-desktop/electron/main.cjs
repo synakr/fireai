@@ -202,11 +202,13 @@ ipcMain.handle("host:get-state", () => host.getState());
 ipcMain.handle("host:has-cloud-job", (_, id) => host.hasCloudJob(id));
 
 ipcMain.handle("host:clear-completed", () => host.clearCompleted());
+ipcMain.handle("host:print-job", (_, id) => host.printJob(id));
+ipcMain.handle("host:reject-job", (_, id) => host.rejectJob(id));
 
 ipcMain.handle("host:refresh-printers", () => host.refreshPrinters());
 
-ipcMain.handle("host:queue-cloud-job", (_, metadata, data, printNow) =>
-  host.queueCloudJob(metadata, Buffer.from(data), Boolean(printNow)),
+ipcMain.handle("host:queue-cloud-job", (_, metadata, data) =>
+  host.queueCloudJob(metadata, Buffer.from(data)),
 );
 
 ipcMain.handle("host:relay-start", (_, metadata) => host.relayStart(metadata));

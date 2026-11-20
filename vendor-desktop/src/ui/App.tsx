@@ -412,7 +412,7 @@ export default function App() {
   }, [session?.user.id]);
 
   const pending = useMemo(
-    () => state?.jobs.filter((job) => job.status === "pending").length || 0,
+    () => state?.jobs.filter((job) => ["pending", "queued"].includes(job.status)).length || 0,
     [state],
   );
 
@@ -454,6 +454,27 @@ export default function App() {
         onNameChange={setAuthName}
       />
     );
+  }
+
+  async function printJob(job: Job) {
+    setNotice(`Sending ${job.originalName} to the printer…`);
+    try {
+      const result = await window.printHost.printJob(job.id);
+      setNotice(result.message || "Print job completed.");
+      await refresh();
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "Could not print this job.");
+    }
+  }
+
+  async function rejectJob(job: Job) {
+    try {
+      const result = await window.printHost.rejectJob(job.id);
+      setNotice(result.message || "Job rejected.");
+      await refresh();
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "Could not reject this job.");
+    }
   }
 
   async function clearCompleted() {
@@ -509,9 +530,6 @@ export default function App() {
             state={state}
             pending={pending}
             done={done}
-            onToggleAuto={() =>
-              window.printHost.setAutoApprove(!state.autoApprove).then(refresh)
-            }
             onRefreshPrinters={() =>
               window.printHost.refreshPrinters().then(refresh)
             }
@@ -524,6 +542,8 @@ export default function App() {
           done={done}
           onClearCompleted={clearCompleted}
           onPreview={setPreviewJob}
+          onPrint={printJob}
+          onReject={rejectJob}
         />
 
         <footer className="flex items-center justify-between px-[3px] pt-[22px] text-[10px] text-[#98a1ad]">
