@@ -254,11 +254,22 @@ The output is also saved in [`analysis/sample-output.txt`](analysis/sample-outpu
 - The prototype does not implement payments, a live shop-open/closed indicator, or hostel delivery.
 - The analysis script and the live application are separate modules; the live app does not ingest the fieldwork CSV.
 
-## Fieldwork evidence, reflection and recording
+## Demo recording
 
-- Add the original timestamped photos using the filenames listed in [`assignment-docs/fieldwork.md`](assignment-docs/fieldwork.md). The `evidence/` folder currently contains an instructions file only until those photos are copied in.
-- Complete [`assignment-docs/reflection.md`](assignment-docs/reflection.md) yourself. The assignment explicitly prohibits AI-written reflection.
-- Export the AI conversations used for the project into `ai-chats/`.
-- **3-minute demo recording:** Replace this line with the actual shareable recording URL after recording the tool running. Do not submit a placeholder link.
+---will be attaching the link soon---
 
-See [`assignment-docs/submission-checklist.md`](assignment-docs/submission-checklist.md) before submission.
+## Timeline:
+
+- initialised: 3pm
+- first commit (research.md): 3:15pm to 4:30pm
+- fieldwork: 4:15 to 5:30pm
+- coding: 5:30 to 9:30pm
+- finalised: 9:30 to 11:30pm
+
+## Being Frank:
+
+- Eventhough a lot had been goiong on today; including internal exams, one mandatory falicitation event, placements drive, semester minor projects etc; i tried to give my full effort on this project
+- there are some gaps in my project, due to time constraints and pre-occupied mind;
+- Required a lot of planning from 3pm to now; managing other simultaneous jobs;
+
+THANK YOU

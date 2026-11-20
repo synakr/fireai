@@ -1,28 +1,27 @@
-## reflection:
+### what i got wrong at the start
 
-i had minor project, internal exam, other drives later i had to travel
-i tried putting my whole effort
-after not eating for the whole day
-i am fed up
-its okay i am not expecting any offer
-i just want to say i put my whole effort while maintaing other works
-i am not in a good state of mind right now
-i dont know what i am about to do
+At first, I didn’t fully understand the issue at hand. It became clear that the issue was in how the vendor is working each day. The confusion comes from managing the files, customer information, print settings and print requests in a WhatsApp chat. I focused too much on adding features and not understanding the whole issue.
 
-i already gave 16 interviews; went to a lot of hr after clearing all technical rounds, lld rounds
+Changes
 
-and i think everytime i just run out luck
+I would remove unecessary features. I would have only the functionality of uploading a file with the QR, choosing print settings, managing jobs in the vendors dashboard and choosing print/reject. This would simplify this project.
 
-most probably i am backing off
+Help from AI
 
-i am being raised by a single parent , she lives in bangalore
-she cam home today, i came to home
-but again i am out of luck
-she's sleeping and by tomorrow early morning i have to leave again before she wakes up
-since i received call for a mandatory call that i have to attend an early morning drive
+Using AI made creating the code quicker. I could easily correct errors, structure my project and create documentation. I could also understand how to integrate between the client app, vendor dashboard and database.
 
-a lot happened today; just like other days
+Wasted time with AI
 
-i am just tired
+Sometimes the AI suggested overcomplicated solutions/extra features. This caused issues in my code which took time to correct. Also, not all the solutions given by the AI worked as intended, therefore I had to manually check my code.
 
-thank you very much
+Conclusion
+
+I have learnt that to create a useful tool, it is important to understand the actual issue. I should have spoken to the person facing this issue to understand it better. Then, I should add only the necessary features.
+
+## Being Frank:
+
+- Eventhough a lot had been goiong on today; including internal exams, one mandatory falicitation event, placements drive, semester minor projects etc; i tried to give my full effort on this project
+- there are some gaps in my project, due to time constraints and pre-occupied mind;
+- Required a lot of planning from 3pm to now; managing other simultaneous jobs;
+
+THANK YOU
